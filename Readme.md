@@ -1,9 +1,9 @@
 
 <p align="center">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="img/traefik.logo-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="img/traefik.logo.png">
-      <img alt="Traefik" title="Traefik" src="img/traefik.logo.png">
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/traefik/traefik/blob/dddb68cd5f02ba87769ec719f68e60a3cb25c16e/docs/content/assets/img/traefik.logo-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://github.com/traefik/traefik/blob/dddb68cd5f02ba87769ec719f68e60a3cb25c16e/docs/content/assets/img/traefik.logo.png">
+      <img alt="Traefik" title="Traefik" src="https://github.com/traefik/traefik/blob/dddb68cd5f02ba87769ec719f68e60a3cb25c16e/docs/content/assets/img/traefik.logo.png">
     </picture>
 </p>
 
