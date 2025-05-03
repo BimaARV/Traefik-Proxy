@@ -2,9 +2,9 @@
 
 <p align="center">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/img/traefik.logo-dark.png">
-      <source media="(prefers-color-scheme: light)" srcset="assets/img/traefik.logo.png">
-      <img alt="Traefik" title="Traefik" src="assets/img/traefik.logo.png">
+      <source media="(prefers-color-scheme: dark)" srcset="img/traefik.logo-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="img/traefik.logo.png">
+      <img alt="Traefik" title="Traefik" src="img/traefik.logo.png">
     </picture>
 </p>
 
