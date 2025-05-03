@@ -1,3 +1,4 @@
+# Traefik Proxy with Lets Encrypt
 
 <p align="center">
     <picture>
@@ -7,7 +8,6 @@
     </picture>
 </p>
 
-# Traefik Proxy with Lets Encrypt
 
 ![Traefik](https://img.shields.io/badge/Traefik-Proxy-lightblue)
 ![Docker](https://img.shields.io/badge/Docker-28.x-blue)
