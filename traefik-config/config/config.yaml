@@ -1,0 +1,57 @@
+http:
+  routers:
+    proxmox:
+      entryPoints:
+        - websecure
+      rule: "Host(`proxmox.local.yourdomain.site`)"
+      middlewares:
+        - default-headers
+      tls: {}
+      service: proxmox
+
+    switch:
+      entryPoints:
+        - websecure
+      rule: "Host(`switch.local.yourdomain.site`)"
+      tls: {}
+      service: switch
+    
+    mikrotik:
+      entryPoints:
+        - websecure
+      rule: "Host(`mt-router.local.yourdomain.site`)"
+      tls: {}
+      service: mikrotik
+
+  middlewares:
+    https-redirect:
+      redirectScheme:
+        scheme: http
+    default-headers:
+      headers:
+        frameDeny: true
+        sslRedirect: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+
+  service:
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://10.28.10.2:8006" #example ip proxmox
+        passHeader: true
+    switch:
+      loadBalancer:
+        servers:
+          - url: "https://10.28.10.3" #example ip switch
+    mikrotik:
+      loadBalancer:
+        servers:
+          - url: "https://10.28.10.1" #example ip mikrotik

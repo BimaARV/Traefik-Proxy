@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  traefik:
+    image: "traefik:latest"
+    container_name: "traefik"
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${PWD}/config:/etc/traefik
+      - traefik-ssl-certs:/ssl-certs
+      - /etc/localtime:/etc/localtime
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - TZ=Asia/Jakarta
+      - CLOUDFLARE_EMAIL=yourmail@mail.com
+      - CLOUDFLARE_DNS_API_TOKEN=YoUrToKeN
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.local.diyproject.site`)"
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.ssl-header.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=websecure"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.local.yourdomain.site`)"
+      - "trafik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik.secure-tls.domains[0].main=local.yourdomain.site"
+      - "traefik.http.routers.traefik.secure-tls.domains[0].sans=*.local.yourdomain.site"
+      - "traefik.http.routers.traefik.secure-tls.service=api@internal"
+    networks:
+      - backend
+
+volumes:
+  traefik-ssl-certs:
+    driver: local
+    name: traefik-ssl-certs
+
+networks:
+  backend:
+    external: true
